@@ -28,7 +28,8 @@ El BFF también nos da una separación bien clara de tareas entre el frontend y 
 
 ### Flujo de la Aplicación
 
-![](D:\Edraw\Gifs\JWTBFFAngular.gif)
+![JWTBFFAngular](https://github.com/agustinjosew/jwtbffangular/assets/76487325/d137a5eb-7dfd-44d1-90bb-cb4653894002)
+
 
 Te cuento cómo se da la comunicación entre Angular, el BFF y la API protegida. 
 
