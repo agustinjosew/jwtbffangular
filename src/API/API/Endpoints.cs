@@ -36,13 +36,13 @@ public static class Endpoints
                 token = tokenHandler.WriteToken(token)
             });
         });
-  
+        
         app.MapGet("/api/claims", (HttpContext http) =>
         {
             var claims = http.User.Claims.Select(c => new { c.Type, c.Value });
             return claims;
         }).RequireAuthorization();
-  
+        
         app.MapGet("/api/products", () =>
         {
             var products = new[]
@@ -55,6 +55,8 @@ public static class Endpoints
             };
             return products;
         }).RequireAuthorization();
+        
+        
     }
 }
 public record LoginRequest(string UserName, string Password);
