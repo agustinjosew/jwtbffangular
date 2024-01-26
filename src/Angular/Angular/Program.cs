@@ -4,7 +4,7 @@ using Angular.Endpoints;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddBffProxy();
+builder.Services.AddBffProxy(builder.Configuration);
 builder.Services.AddLocalAuthentication();
 builder.Services.AddHttpClient();
 
@@ -24,16 +24,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapReverseProxy();
-app.MapEndpoints();
-app.MapFallbackToFile();
-app.UseRouting();
+app.MapEndpoints(builder.Configuration);
 
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-
+// This is convenient for routing requests for dynamic content to a SPA framework, while also allowing requests for non-existent files to
+// result in an HTTP 404.
 app.MapFallbackToFile("index.html");
-;
 
 app.Run();
