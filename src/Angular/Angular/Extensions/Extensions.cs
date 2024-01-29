@@ -19,6 +19,8 @@ public static class Extensions
                 options.Cookie.HttpOnly = true;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 
+                // Se sobreescribe OnRedirectToAccessDenied porque el comportamiento default de autenticación por cookies es la redirección a una página predeterminada
+                // (ejem /AccessDenied) y como no estamos usando Razor Pages o similar, no queremos una redirección, sino el error HTTP 403.
                 options.Events.OnRedirectToAccessDenied = context =>
                 {
                     context.Response.StatusCode = 403;
